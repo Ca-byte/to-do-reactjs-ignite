@@ -24,7 +24,7 @@
 
 body {
   color: var(--gray300);
-  background-color: var(--gray400);
+  background-color: var(--gray600);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -33,7 +33,10 @@ body {
   -webkit-text-size-adjust: 100%;
 }
 
-body, input, button {
+body, 
+input, 
+textarea, 
+button {
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 1rem;
