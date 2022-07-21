@@ -57,7 +57,7 @@ export function TaskBoard(){
         </div>
         <div className={styles.taskDone}>
           <p>Tasks done</p>
-          <span>0</span>
+          <span>0</span> de <span>{tasks.length}</span>
         </div>
       </header>
 
