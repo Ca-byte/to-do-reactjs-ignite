@@ -24,13 +24,14 @@ export function TaskList({id, content, onDeleteTask}:TaskListProps){
     }
   }
   const test = Math.random().toString(36).replace(/[^a-z]+/g, '');
+  console.log(test)
   return(
     <div className={styles.taskCard}>
       <div className={styles.rounded}>
         <input 
           name="checkbox"
           type="checkbox"
-          id={id}
+          id="checkbox"
           checked={isCompleted}
           onClick={handleOnCompletedTask}
           readOnly
