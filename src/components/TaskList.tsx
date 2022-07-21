@@ -1,22 +1,47 @@
 import styles from './TaskList.module.css';
 import { Trash } from 'phosphor-react';
+import { useState } from 'react';
 
+interface TaskListProps {
+  id: string;
+  key: string;
+  content: string;
+  onDeleteTask: (task: string) => void;
+}
 
-export function TaskList(){
+export function TaskList({id, content, onDeleteTask}:TaskListProps){
+  const [isCompleted, setIsCompleted] = useState(false);
+
+  function handleDeleteTask() {
+    onDeleteTask(id)
+  }
+
+  function handleOnCompletedTask() {
+    if (isCompleted) {
+      setIsCompleted(false);
+    } else {
+      setIsCompleted(true);
+    }
+  }
+  const test = Math.random().toString(36).replace(/[^a-z]+/g, '');
   return(
-    <div className={styles.TaskCard}>
+    <div className={styles.taskCard}>
       <div className={styles.rounded}>
-      <input 
-        name="checkbox"
-        type="checkbox"
-        id="checkbox"
-        
-      />
-      <label htmlFor="checkbox"></label>
-      </div>
-      <span>Code tomorrow</span>
+        <input 
+          name="checkbox"
+          type="checkbox"
+          id={id}
+          checked={isCompleted}
+          onClick={handleOnCompletedTask}
+          readOnly
+          
+        />
+        <label htmlFor="checkbox"></label>
+        </div>
+        <span className={isCompleted === true ? styles.completed : ''}>{content}</span>
       <button
         type='button'
+        onClick={handleDeleteTask}
       >
         <Trash size={20}/>
       </button>

@@ -7,6 +7,7 @@
 
 .todoForm textarea {
 	background-color: var(--gray500);
+	color: var(--blue);
 	width: 39.875rem;
 	max-width: 39.875rem;
 	height:3.375rem;
@@ -69,7 +70,7 @@ header.taskContainer {
 
 .taskContainer span {
 	height: 1.188rem;
-  width: 1.563rem;
+  	width: 1.563rem;
 	font-size: 0.75rem;
 	background-color: var(--gray400);
 	border-radius: 16px;
@@ -79,7 +80,7 @@ header.taskContainer {
 }
 
 .taskBox {
-	display: flex;
+	display: block;
 	justify-content: center;
 	align-items: center;
 	width: 46rem;
@@ -90,20 +91,19 @@ header.taskContainer {
 	margin: auto;
 }
 
-.taskBox .taskBoxContent{
+.taskBox .taskBoxContent {
 	flex-direction: collumn;
 	align-items: center;
 	justify-content: flex-end;
-
-
 }
 
-.taskBox .taskBoxContent img{
+.taskBox .taskBoxContent img {
 	display: flex;
-	margin: 0 auto 1rem;
+	margin: 4rem auto 1rem;
 }
 
 .taskBox .taskBoxContent p {
 	width: 20.875rem;
 	max-width: 20.875rem;
+	margin: auto;
 }

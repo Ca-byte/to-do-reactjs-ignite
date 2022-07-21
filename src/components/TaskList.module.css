@@ -1,5 +1,5 @@
-.TaskCard {
-  width:46rem;
+.taskCard {
+  width:44rem;
   height: 4.5rem;
   min-height: 4.5rem;
   background-color: var(--gray500);
@@ -57,8 +57,12 @@
   opacity: 1;
 }
 
+.completed {
+  text-decoration:line-through;
+  opacity:0.7;
+}
 
-.TaskCard button[type="button"]{
+.taskCard button[type="button"]{
   background: transparent;
   color: var(--gray300);
   border: 0;
@@ -68,6 +72,6 @@
 }
 
 
-.TaskCard button:hover{
+.taskCard button:hover{
   color: var(--gray100);
 }
