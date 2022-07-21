@@ -1,6 +1,7 @@
 import styles from './TaskBoard.module.css';
 import { ClipboardText, PlusCircle } from 'phosphor-react';
 import ClipBoardSvg from '../assets/clipboard.svg'
+import { TaskList } from './TaskList';
 
 
 
@@ -38,8 +39,8 @@ export function TaskBoard(){
 					Create tasks and organize your tasks
 				</p>
 			</div>
-
 		</main>
+			<TaskList />
 		</>
 	)
 }
