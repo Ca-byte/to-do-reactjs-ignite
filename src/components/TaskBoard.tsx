@@ -30,7 +30,7 @@ export function TaskBoard() {
     setNewTask({
       id: uuidv4(),
       title: event.target.value,
-      isComplete: false,
+      isComplete: true,
     });
   }
 
