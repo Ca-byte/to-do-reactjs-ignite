@@ -6,10 +6,11 @@ import { useState } from 'react';
 export interface TaskListProps {
   id: string;
   content: string;
+  isComplete: boolean;
   onDeleteTask: (id: string) => void;
 }
 
-export function TaskList({id, content, onDeleteTask}:TaskListProps){
+export function TaskList({id, content, isComplete, onDeleteTask}:TaskListProps){
   const [isCompleted, setIsCompleted] = useState(false);
 
   function handleDeleteTask() {

@@ -19,7 +19,7 @@ export function TaskBoard() {
     event.preventDefault();
     setTask([...tasks, newTask]);
     setNewTask({
-      id: '',
+      id: uuid(),
       title: '',
       isComplete: false,
     });
@@ -30,7 +30,7 @@ export function TaskBoard() {
     setNewTask({
       id: uuid(),
       title: event.target.value,
-      isComplete: true,
+      isComplete: false,
     });
   }
 
@@ -94,6 +94,7 @@ export function TaskBoard() {
                     key={task.id}
                     id={task.id}
                     content={task.title}
+                    isComplete={task.isComplete}
                     onDeleteTask={deleteTask}
                   />
               );
