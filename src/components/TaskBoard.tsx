@@ -3,12 +3,12 @@ import { TaskList } from './TaskList';
 import { PlusCircle } from 'phosphor-react';
 import ClipBoardSvg from '../assets/clipboard.svg';
 import styles from './TaskBoard.module.css';
-import { uuid } from 'uuidv4';
+import {v4 as uuidv4} from 'uuid';
 
 export function TaskBoard() {
   const [tasks, setTask] = useState([
     {
-      id: uuid(),
+      id: uuidv4(),
       title: 'Code tomorrow',
       isComplete: false,
     },
@@ -19,7 +19,7 @@ export function TaskBoard() {
     event.preventDefault();
     setTask([...tasks, newTask]);
     setNewTask({
-      id: uuid(),
+      id: uuidv4(),
       title: '',
       isComplete: false,
     });
@@ -28,7 +28,7 @@ export function TaskBoard() {
   function handleNewTaskChange(event: ChangeEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('');
     setNewTask({
-      id: uuid(),
+      id: uuidv4(),
       title: event.target.value,
       isComplete: false,
     });
@@ -89,15 +89,14 @@ export function TaskBoard() {
               ''
           )}
           {tasks.map((task) => {
-              return (
-                  <TaskList
-                    key={task.id}
-                    id={task.id}
-                    content={task.title}
-                    isComplete={task.isComplete}
-                    onDeleteTask={deleteTask}
-                  />
-              );
+            return (
+              <TaskList
+                key={task.id}
+                id={task.id}
+                content={task.title}
+                onDeleteTask={deleteTask}
+              />
+            );
           })}
       </main>
     </>
