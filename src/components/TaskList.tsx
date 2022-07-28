@@ -3,10 +3,10 @@ import { Trash } from 'phosphor-react';
 import { useState } from 'react';
 
 
-interface TaskListProps {
+export interface TaskListProps {
   id: string;
   content: string;
-  onDeleteTask: (task: string) => void;
+  onDeleteTask: (id: string) => void;
 }
 
 export function TaskList({id, content, onDeleteTask}:TaskListProps){
