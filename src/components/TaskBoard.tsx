@@ -30,7 +30,7 @@ export function TaskBoard() {
     setNewTask({
       id: uuidv4(),
       title: event.target.value,
-      isComplete: true,
+      isComplete: false,
     });
   }
 
@@ -44,6 +44,21 @@ export function TaskBoard() {
     });
 
     setTask(tasksWithoutDeletedOne);
+  }
+
+  function handleToggleTaskCompletion(id : string) {
+    const editedTasks = tasks.map(task => {
+      if (task.id === id) {
+        return {
+          ...task,
+           isComplete: !task.isComplete
+        }
+      }
+      
+      return task
+    })
+    
+    setTask(editedTasks)
   }
 
   return (
@@ -94,7 +109,7 @@ export function TaskBoard() {
                 key={task.id}
                 id={task.id}
                 content={task.title}
-                isComplete={task.isComplete}
+                onCompleted={handleToggleTaskCompletion}
                 onDeleteTask={deleteTask}
               />
             );

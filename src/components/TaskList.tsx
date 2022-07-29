@@ -6,12 +6,12 @@ import { useState } from 'react';
 export interface TaskListProps {
   id: string;
   content: string;
-  isComplete: boolean;
+  onCompleted: (id : string) => void;
   onDeleteTask: (id: string) => void;
 }
 
-export function TaskList({id, content,isComplete, onDeleteTask}:TaskListProps){
-  const [isCompleted, setIsCompleted] = useState(isComplete);
+export function TaskList({id, content, onCompleted, onDeleteTask}:TaskListProps){
+  const [isCompleted, setIsCompleted] = useState(false);
 
   function handleDeleteTask() {
     onDeleteTask(id)
@@ -23,6 +23,7 @@ export function TaskList({id, content,isComplete, onDeleteTask}:TaskListProps){
     } else {
       setIsCompleted(true);
     }
+    onCompleted(id)
   }
   
   return(
