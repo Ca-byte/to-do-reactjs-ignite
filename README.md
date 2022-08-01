@@ -3,7 +3,7 @@
 </h1>
 
 <h1 align="center">
-    <img src="src/assets/todo.mp4" width="600px"> 
+    <img src="src/assets/to-do.gif" width="600px"> 
 </h1>
 
 ## 💻 Project
