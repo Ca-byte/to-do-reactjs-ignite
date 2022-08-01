@@ -46,8 +46,13 @@ Before starting you need to have installed the [Git](https://git-scm.com) and [N
     #Run the project
     $ npm run dev
 ```
-### localhost
+### localhost:
 http://localhost:5173/
+
+---
+
+### Deployment:
+https://to-do-reactjs-ignite.vercel.app/
 
 ---
 ## 📝 Licença
