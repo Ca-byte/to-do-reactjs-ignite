@@ -97,7 +97,7 @@ export function TaskBoard() {
                 <img src={ClipBoardSvg} alt="Clipboard icon" />
                 <p>
                   You don't have any tasks registered yet. Create
-                  tasks and[] organize your tasks
+                  tasks and organize your tasks
                 </p>
               </div>
           ) : (
