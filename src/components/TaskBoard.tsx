@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, InvalidEvent, useEffect, useState } from 'react';
 import { TaskList } from './TaskList';
 import { PlusCircle } from 'phosphor-react';
 import ClipBoardSvg from '../assets/clipboard.svg';
@@ -60,6 +60,18 @@ export function TaskBoard() {
     
     setTask(editedTasks)
   }
+
+  useEffect(() => {
+    // storing input name
+    localStorage.setItem("todos", JSON.stringify([tasks]));
+  }, [tasks]);
+
+  useEffect(() => {
+    const items = JSON.parse(localStorage.getItem("todos"), '');
+    if (items) {
+     setTask(items);
+    }
+  }, []);
 
   return (
     <>
