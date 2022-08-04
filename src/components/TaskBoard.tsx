@@ -1,132 +1,142 @@
-import { ChangeEvent, FormEvent, InvalidEvent, useEffect, useState } from 'react';
+import {
+    ChangeEvent,
+    FormEvent,
+    InvalidEvent,
+    useEffect,
+    useState,
+} from 'react';
 import { TaskList } from './TaskList';
 import { PlusCircle } from 'phosphor-react';
 import ClipBoardSvg from '../assets/clipboard.svg';
 import styles from './TaskBoard.module.css';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
+
+type TaskProps = {
+    id: string;
+    title: string;
+    isComplete: boolean;
+};
+
+const items = JSON.parse(localStorage.getItem('todos') || '');
 
 export function TaskBoard() {
-  const [tasks, setTask] = useState([
-    {
-      id: uuidv4(),
-      title: 'Code tomorrow',
-      isComplete: false,
-    },
-  ]);
-  const [newTask, setNewTask] = useState({} as any);
+    const [tasks, setTask] = useState<TaskProps[]>(items);
+    const [newTask, setNewTask] = useState({} as TaskProps);
 
-  function handleAddNewTask(event: FormEvent) {
-    event.preventDefault();
-    setTask([...tasks, newTask]);
-    setNewTask({
-      id: uuidv4(),
-      title: '',
-      isComplete: false,
-    });
-  }
+    console.log(JSON.stringify(tasks, null, 2));
 
-  function handleNewTaskChange(event: ChangeEvent<HTMLTextAreaElement>) {
-    event.target.setCustomValidity('');
-    setNewTask({
-      id: uuidv4(),
-      title: event.target.value,
-      isComplete: false,
-    });
-  }
+    function handleAddNewTask(event: FormEvent) {
+        event.preventDefault();
 
-  function handleNewTaskInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
-    event.target.setCustomValidity('Hey, add a task first!');
-  }
+        const newTaskList = [...tasks, newTask];
 
-  function deleteTask(taskToDelete: string) {
-    const tasksWithoutDeletedOne = tasks.filter((task) => {
-      return task.id !== taskToDelete;
-    });
+        setTask(newTaskList);
 
-    setTask(tasksWithoutDeletedOne);
-  }
+        setNewTask({
+            id: uuidv4(),
+            title: '',
+            isComplete: false,
+        });
 
-  function handleToggleTaskCompletion(id : string) {
-    const editedTasks = tasks.map(task => {
-      if (task.id === id) {
-        return {
-          ...task,
-           isComplete: !task.isComplete
-        }
-      }
-      
-      return task
-    })
-    
-    setTask(editedTasks)
-  }
-
-  useEffect(() => {
-    // storing input name
-    localStorage.setItem("todos", JSON.stringify([tasks]));
-  }, [tasks]);
-
-  useEffect(() => {
-    const items = JSON.parse(localStorage.getItem("todos"), '');
-    if (items) {
-     setTask(items);
+        localStorage.setItem('todos', JSON.stringify(newTaskList));
     }
-  }, []);
 
-  return (
-    <>
-      <form onSubmit={handleAddNewTask} className={styles.todoForm}>
-          <textarea
-            placeholder="Add a new task"
-            value={newTask.title}
-            onChange={handleNewTaskChange}
-            onInvalid={handleNewTaskInvalid}
-            required
-          />
-          <button type="submit">
-            Create
-            <PlusCircle weight="bold" size={18} />
-          </button>
-      </form>
+    function handleNewTaskChange(event: ChangeEvent<HTMLTextAreaElement>) {
+        event.target.setCustomValidity('');
+        setNewTask({
+            id: uuidv4(),
+            title: event.target.value,
+            isComplete: false,
+        });
+    }
 
-      <header className={styles.taskContainer}>
-          <div className={styles.taskCreated}>
-            <p>Tasks created</p>
-            <span>{tasks.length}</span>
-          </div>
-          <div className={styles.taskDone}>
-              <p>Tasks done</p>
-              <span>
-                {tasks.filter((task) => task.isComplete).length}
-              </span>{' '}
-              de <span>{tasks.length}</span>
-          </div>
-      </header>
+    function handleNewTaskInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
+        event.target.setCustomValidity('Hey, add a task first!');
+    }
 
-      <main className={styles.taskBox}>
-          {tasks.length === 0 ? (
-              <div className={styles.taskBoxContent}>
-                <img src={ClipBoardSvg} alt="Clipboard icon" />
-                <p>
-                  You don't have any tasks registered yet. Create
-                  tasks and organize your tasks
-                </p>
-              </div>
-          ) : (
-              ''
-          )}
-          {tasks.map((task) => {
-            return (
-              <TaskList
-                key={task.id}
-                id={task.id}
-                content={task.title}
-                onCompleted={handleToggleTaskCompletion}
-                onDeleteTask={deleteTask}
-              />
-            );
-          })}
-      </main>
-    </>
-  );
+    function deleteTask(taskToDelete: string) {
+        const tasksWithoutDeletedOne = tasks.filter((task) => {
+            return task.id !== taskToDelete;
+        });
+
+        setTask(tasksWithoutDeletedOne);
+
+        localStorage.setItem('todos', JSON.stringify(tasks));
+    }
+
+    function handleToggleTaskCompletion(id: string) {
+        const editedTasks = tasks.map((task) => {
+            if (task.id === id) {
+                return {
+                    ...task,
+                    isComplete: !task.isComplete,
+                };
+            }
+
+            return task;
+        });
+
+        setTask(editedTasks);
+
+        localStorage.setItem('todos', JSON.stringify(tasks));
+    }
+
+    useEffect(() => {
+        localStorage.setItem('todos', JSON.stringify(tasks));
+    }, [tasks]);
+
+    return (
+        <>
+            <form onSubmit={handleAddNewTask} className={styles.todoForm}>
+                <textarea
+                    placeholder="Add a new task"
+                    value={newTask.title}
+                    onChange={handleNewTaskChange}
+                    onInvalid={handleNewTaskInvalid}
+                    required
+                />
+                <button type="submit">
+                    Create
+                    <PlusCircle weight="bold" size={18} />
+                </button>
+            </form>
+
+            <header className={styles.taskContainer}>
+                <div className={styles.taskCreated}>
+                    <p>Tasks created</p>
+                    <span>{tasks.length}</span>
+                </div>
+                <div className={styles.taskDone}>
+                    <p>Tasks done</p>
+                    <span>
+                        {tasks.filter((task) => task.isComplete).length}
+                    </span>{' '}
+                    de <span>{tasks.length}</span>
+                </div>
+            </header>
+
+            <main className={styles.taskBox}>
+                {tasks.length === 0 ? (
+                    <div className={styles.taskBoxContent}>
+                        <img src={ClipBoardSvg} alt="Clipboard icon" />
+                        <p>
+                            You don't have any tasks registered yet. Create
+                            tasks and organize your tasks
+                        </p>
+                    </div>
+                ) : (
+                    ''
+                )}
+                {tasks.map((task, index) => (
+                    <TaskList
+                        key={index}
+                        id={task.id}
+                        content={task.title}
+                        onCompleted={handleToggleTaskCompletion}
+                        onDeleteTask={deleteTask}
+                    />
+                ))}
+            </main>
+        </>
+    );
 }
