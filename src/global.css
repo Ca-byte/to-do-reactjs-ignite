@@ -15,7 +15,15 @@
  --purpleDark:#5E60CE;
  --purple: #8284FA;
 
+ /* width: 100%; */
 }
+
+@media(max-width: 728px){
+  :root{
+    display: flex;
+  }
+}
+
  * {
   margin: 0;
   padding: 0;

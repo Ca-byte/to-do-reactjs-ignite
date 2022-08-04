@@ -84,7 +84,7 @@ export function TaskBoard() {
   }, [tasks]);
 
   return (
-    <>
+    <div className={styles.container}>
       <form onSubmit={handleAddNewTask} className={styles.todoForm}>
           <textarea
               placeholder="Add a new task"
@@ -136,6 +136,6 @@ export function TaskBoard() {
               />
           ))}
       </main>
-  </>
+   </div>
   );
 }

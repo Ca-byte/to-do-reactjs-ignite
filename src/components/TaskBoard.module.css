@@ -1,14 +1,21 @@
+.container{
+	width:100%;
+	min-width: 400px;
+	margin: 0 auto;
+}
+
 .todoForm {
 	display: flex;
 	justify-content: center;
 	margin: -1.5rem 0 4rem;
 	gap:.5rem;
+	margin: 0 1rem;
 }
 
 .todoForm textarea {
 	background-color: var(--gray500);
 	color: var(--blue);
-	width: 39.875rem;
+	width: 100%;
 	max-width: 39.875rem;
 	height:3.375rem;
 	border-radius: 8px;
@@ -42,9 +49,9 @@ header.taskContainer {
 	display: flex;
 	width: 46rem;
 	max-width: 46rem;
-	margin-bottom: 1.5rem;
 	justify-content: space-between;
-	margin: 0 auto 1.5rem;
+	margin: 4rem auto 1.5rem;
+	padding-inline: 1rem;
 }
 
 .taskContainer 
