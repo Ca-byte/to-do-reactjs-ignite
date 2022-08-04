@@ -19,6 +19,9 @@ The challenge proposed:
 - [x] Mark and unmark tasks as complete  
 - [x] Delete task
 ---
+**Extra miles**
+- [x] localstorage
+---
 ## 🛠️ Technologies
 
 - [Vite](https://vitejs.dev/)
