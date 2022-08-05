@@ -17,7 +17,7 @@ type TaskProps = {
   isComplete?: boolean;
 };
 
-const items = JSON.parse(localStorage.getItem('todos') || '');
+const items = JSON.parse(localStorage?.getItem('todos') || '');
 
 export function TaskBoard() {
   const [tasks, setTask] = useState<TaskProps[]>(items);
@@ -38,6 +38,8 @@ export function TaskBoard() {
       title: '',
       isComplete: false,
     });
+    
+    document?.getElementById('task-textarea')?.focus();
   }
 
   function handleNewTaskChange(event: ChangeEvent<HTMLTextAreaElement>) {
@@ -52,6 +54,8 @@ export function TaskBoard() {
 
   function handleNewTaskInvalid(event: InvalidEvent<HTMLTextAreaElement>) {
     event.target.setCustomValidity('Hey, add a task first!');
+    
+    document?.getElementById('task-textarea')?.focus();
   }
 
   function deleteTask(taskToDelete: string) {
@@ -82,11 +86,16 @@ export function TaskBoard() {
   useEffect(() => {
     localStorage.setItem('todos', JSON.stringify(tasks));
   }, [tasks]);
+  
+   useEffect(() => {
+        document?.getElementById('new-todo')?.focus();
+  }, []);
 
   return (
     <div className={styles.container}>
       <form onSubmit={handleAddNewTask} className={styles.todoForm}>
           <textarea
+              id="task-textarea"
               placeholder="Add a new task"
               value={newTask.title}
               onChange={handleNewTaskChange}
