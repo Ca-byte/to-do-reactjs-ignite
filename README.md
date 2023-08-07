@@ -6,7 +6,7 @@
     <img src="src/assets/to-do.gif" width="600px"> 
 </h1>
 
-## 💻 Project
+## :memo: Project 
 **Todo**: Ignite 01- Challenge - ToDo-list.
 The challenge proposed:
 - [x] Create layout based on Figma 
@@ -22,7 +22,7 @@ The challenge proposed:
 **Extra miles**
 - [x] localstorage
 ---
-## 🛠️ Technologies
+## :rocket: Technologies ##
 
 - [Vite](https://vitejs.dev/)
 - [React.js](https://pt-br.reactjs.org/)
